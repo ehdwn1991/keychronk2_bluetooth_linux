@@ -1,8 +1,5 @@
 
-
-
-
-
+# Centos KeychronK2 Guide
 
 ## 사용된 장비
 
@@ -82,3 +79,14 @@ Connection successful
 [CHG] Device DC:2C:26:D0:FB:63 ServicesResolved: yes
 ```
 
+
+## Default Function key 기능 비활성화
+
+기본적으로 KeychronK2 에서는 `Fn`키를 누르지 않아도 functionkey 기능이 활성화 되어 있어서
+기존의 F1~F12 키는 사용할수가 없다.
+때문에 Fn 키를 강제적으로 비활성화 해줘야 하는데, 매번 설정하기 귀찮으니 자동 으로 실행하도록 `rc.local` 에 추가해준다.
+
+```shell
+$ vim /etc/rc.local
+su root -c "echo 0 > /sys/bus/hid/drivers/apple/module/parameters/fnmode"
+```
